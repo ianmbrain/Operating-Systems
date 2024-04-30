@@ -1,0 +1,13 @@
+@author Ian M Brain (imbrain)
+
+1) abcdefghijkl no
+
+2) jgakldebchif no
+
+3) gabjckhldeif yes
+
+4) gdjklehaibfc yes
+
+5) gjdklhabefci yes
+
+6) jkgadhbclefi no
