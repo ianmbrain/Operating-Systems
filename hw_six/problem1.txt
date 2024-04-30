@@ -1,0 +1,98 @@
+@author Ian M Brain (imbrain)
+
+(a) 000010000000111010 (write access)
+-> 000010 000000111010
+Page is 2, mapped to frame 0 of physical memory
+TLB Miss
+Access violation - write access to read only page
+
+Page Table
+virtual page # frame # valid read-only dirty reference
+0 12 1 1 1 0
+1 9 1 0 0 0
+2 0 1 1 0 1
+3 7 1 1 1 0
+4 3 1 0 0 0
+
+TLB
+virtual page # frame # valid read-only dirty reference
+4 3 1 0 0 1
+0 12 1 1 1 0
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+(b) 000000110000000000 (read access)
+-> 000000 110000000000
+Page is 0, mapped to frame 12 of physical memory
+TLB Hit
+Physical address = 1100 110000000000
+Paging completion
+
+Page Table
+virtual page # frame # valid read-only dirty reference
+0 12 1 1 1 0
+1 9 1 0 0 0
+2 0 1 1 0 1
+3 7 1 1 1 0
+4 3 1 0 0 0
+
+reference bit of entry "virtual page 0" is not set due to the TLB write-back policy. Only the TLB page 0 reference bit is updated
+
+TLB
+virtual page # frame # valid read-only dirty reference
+4 3 1 0 0 1
+0 12 1 1 1 1
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+(c) 000001010001001101 (write access)
+-> 000001 010001001101
+Page is 1, mapped to frame 9 of physical memory
+TLB Miss
+Physical address = 1001 010001001101
+Paging completion
+
+Page Table
+virtual page # frame # valid read-only dirty reference
+0 12 1 1 1 0
+1 9 1 0 1 1
+2 0 1 1 0 1
+3 7 1 1 1 0
+4 3 1 0 0 1
+
+reference and dirty bit of entry "virtual page 1" is set to 1
+
+TLB
+virtual page # frame # valid read-only dirty reference
+1 9 1 0 1 1
+0 12 1 1 1 1
+
+TLB replacement occurs: replace entry "virtual page 4" with the new entry
+"virtual page 1", entry "virtual page 4" is synced back to the page table
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+(d) 000100100000101010 (write access)
+-> 000100 100000101010
+Page is 4, mapped to frame 3 of physical memory
+TLB Miss
+Physical address = 0011 100000101010
+Paging completion
+
+Page Table
+virtual page # frame # valid read-only dirty reference
+0 12 1 1 1 1
+1 9 1 0 1 1
+2 0 1 1 0 1
+3 7 1 1 1 0
+4 3 1 0 1 1
+
+dirty bit of entry "virtual page 4" is set to 1. reference bit was already set to one previously.
+
+TLB
+virtual page # frame # valid read-only dirty reference
+1 9 1 0 1 1
+4 3 1 0 1 1
+
+TLB replacement occurs: replace entry "virtual page 0" with the new entry
+"virtual page 4", entry "virtual page 0" is synced back to the page table
