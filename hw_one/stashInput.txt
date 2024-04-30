@@ -1,0 +1,7 @@
+ls
+cat input-1.txt
+
+ls
+
+
+exit 7

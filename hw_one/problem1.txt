@@ -1,0 +1,18 @@
+@author Ian M Brain (imbrain)
+
+a. The open() system call will use the third flag "mode" if either O_CREAT or O_TMPFILE are specified as a flag.
+If neither of these flags are specified, only two parameters will be used.
+Citing Help from the open() online manual page in the O_CREAT section.
+
+b. Whether read() reaches end-of-file or encounters an error can be determined through the return value.
+A return value of -1 indicates an error occured and errno will be set. If the return value is zero it indicates that end-of-file was reached
+Citing Help from the read() online manual page in the RETURN VALUE section.
+
+c. A programmer can determine if fork() failed because there are already too many processes by checking the thrown error.
+The error will appear as "EAGAIN A system-imposed limit on the number of threads was encountered." The programmer could then
+check if the error was caused because the maximum number of PIDs (/proc/sys/kernel/pid_max) was reached
+Citing Help from the fork() online manual page in the ERRORS section.
+
+d. After wait() returns, a programmer can determine which child process was terminated by examining the return
+value of wait(). wait() returns the ID of the terminated child by default and otherwise returns -1 if it fails.
+Citing Help from the wait() online manual page in the RETURN VALUE section.
