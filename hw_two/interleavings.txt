@@ -1,0 +1,9 @@
+(a) ABCDE yes
+  
+(b) ABDCE yes
+
+(c) EDCBA no
+  
+(d) BCDAE yes
+
+(e) DEACB no

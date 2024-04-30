@@ -1,0 +1,14 @@
+@author Ian M Brain (imbrain)
+
+A. Use the access mode O_RDWR with open() to open a file that can be both read from and written to.
+
+B. This message queue name will fail because it contains multiple slashes. Queue names should contain
+one back slash at the beginning of the name and no more.
+
+C. To tell the OS to ignore a signal, you should pass SIG_IGN in the sa_handler. This is done by
+creating the sigaction struct and then specifying struct_name.sa_handler = SIG_IGN. struct_name here
+is the name of the struct.
+
+D. A program can tell that mq_receive() returned because of a signal rather than a message through
+the return value of -1, indicating an error. The errno of the error should be set to EINTR indicating
+the call was interrupted from the signal handler.
